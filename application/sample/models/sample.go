@@ -7,4 +7,6 @@ import (
 func HelloWorld(name string) string {
 	return fmt.Sprintf("Hello %s!", name)
 }
-
+func Nba() string {
+	return fmt.Sprintf("aaaaaa")
+}

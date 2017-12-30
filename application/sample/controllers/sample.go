@@ -14,3 +14,11 @@ func (o *Sample) HelloWorld() {
 	o.Data["json"] = map[string]string{"content": models.HelloWorld("Gao")}
 	o.ServeJSON()
 }
+func (o *Sample) Nba() {
+	o.Data["json"] = map[string] string{"content": models.Nba()}
+	o.ServeJSON()
+}
+func (o *Sample) Test() {
+	o.Data["json"] = map[string] string{"content": "hello Beego"}
+	o.ServeJSON()
+}

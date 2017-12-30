@@ -15,4 +15,6 @@ import (
 
 func init() {
 	beego.Router("/", &controllers.Sample{}, "get:HelloWorld")
+	beego.Router("/nba", &controllers.Sample{}, "post:Nba")
+	beego.Router("/test", &controllers.Sample{}, "get:Test")
 }
