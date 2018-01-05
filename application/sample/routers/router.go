@@ -14,7 +14,10 @@ import (
 )
 
 func init() {
-	beego.Router("/", &controllers.Sample{}, "get:HelloWorld")
-	beego.Router("/nba", &controllers.Sample{}, "post:Nba")
-	beego.Router("/test", &controllers.Sample{}, "get:Test")
+	// beego.Router("/", &controllers.Sample{}, "get:HelloWorld")
+	// beego.Router("/nba", &controllers.Sample{}, "*:Nba")  //自定义方法
+	// beego.Router("/api/123:id=123", &controllers.Sample{}, "get:Test") //正则路由 
+	beego.Router("/insert", &controllers.Testcontrollers{}, "get:Insert")
+	beego.Router("/read", &controllers.Testcontrollers{}, "get:Read")
+	beego.Router("/params", &controllers.Testcontrollers{}, "post:Params")
 }
