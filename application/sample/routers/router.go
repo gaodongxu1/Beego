@@ -23,4 +23,8 @@ func init() {
 	beego.Router("/params", &controllers.Testcontrollers{}, "post:Params")
 	beego.Router("/flash", &controllers.Testcontrollers{}, "post:Get")
 	beego.Router("/user", &controllers.Testcontrollers{}, "get:User")
+	beego.Router("/student", &controllers.Testcontrollers{}, "get:Student")
+	beego.Router("/requestbody", &controllers.Testcontrollers{}, "post:RequestBody")
+	beego.Router("/upload", &controllers.Testcontrollers{}, "post:FileUpload")
+	beego.Router("/bind", &controllers.Testcontrollers{}, "get:BindData")
 }
