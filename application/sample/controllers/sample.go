@@ -4,13 +4,19 @@ import (
 	"fmt"
 	"github.com/gaodongxu1/Beego/application/sample/models"
 	"github.com/astaxie/beego"
+	"strconv"
 )
 
 type Testcontrollers struct {
 	beego.Controller
 }
 
-
+type user struct {
+    Id    int         `form:"-"`
+    Name  interface{} `form:"username"`
+    Age   int         `form:"age"`
+    Email string
+}
 // func (o *Sample) HelloWorld() {
 // 	o.Data["json"] = map[string]string{"content": models.HelloWorld("Gao")}
 // 	o.ServeJSON()
@@ -23,8 +29,10 @@ type Testcontrollers struct {
 // 	o.Data["json"] = map[string] string{"content": "hello Beego 正则路由"}
 // 	o.ServeJSON()
 // }
-
-
+ func (t *Testcontrollers) Hello() {
+ 	t.Data["json"] = map[string] string{"content": "hello Beego "}
+ 	t.ServeJSON()
+ }
 func (t *Testcontrollers) Insert() {
 	id, err := models.Test.Insert()
 	fmt.Println(id, err)
@@ -56,4 +64,19 @@ func (t *Testcontrollers) Params() {
 		t.Ctx.WriteString(jsoninfo)
         return
 	}
+}
+
+func (t *Testcontrollers) Getid() {
+	fmt.Println("Getid........Test")
+    id := t.Input().Get("id")
+	intid, _ := strconv.Atoi(id)
+	fmt.Printf("get the data  %d\n",intid)
+}
+
+func (t *Testcontrollers) User() {
+	u := user{}
+    if err := t.ParseForm(&u); err != nil {
+		//handle error
+	}
+	fmt.Printf("get the data  %d\n",t.ParseForm(&u))
 }

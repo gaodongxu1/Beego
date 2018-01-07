@@ -43,7 +43,7 @@ func (insert *Testmodels) Insert() (int64, error) {
 	o.Using("test") // 默认使用 default，你可以指定为其他数据库
 	carts := new(Carts)
 	carts.Title = "my first bolg"
-	carts.Content = "默认使用 default，你可以指定为其他数据库"
+	carts.Content = "默认使用"
 	id, err := o.Insert(carts)
 	if err != nil {
 		return 0, err
