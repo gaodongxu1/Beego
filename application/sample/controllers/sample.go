@@ -25,22 +25,12 @@ type student struct {
 	Name interface{} `form:"name"`
 	age int          `form:"age"`
 }
-// func (o *Sample) HelloWorld() {
-// 	o.Data["json"] = map[string]string{"content": models.HelloWorld("Gao")}
-// 	o.ServeJSON()
-// }
-// func (o *Sample) Nba() {
-// 	o.Data["json"] = map[string] string{"content": models.Nba()}
-// 	o.ServeJSON()
-// }
-// func (o *Sample) Test() {
-// 	o.Data["json"] = map[string] string{"content": "hello Beego 正则路由"}
-// 	o.ServeJSON()
-// }
+
  func (t *Testcontrollers) Hello() {
  	t.Data["json"] = map[string] string{"content": "hello Beego "}
  	t.ServeJSON()
- }
+}
+
 func (t *Testcontrollers) Insert() {
 	id, err := models.Test.Insert()
 	fmt.Println(id, err)
@@ -53,6 +43,47 @@ finish:
 	t.ServeJSON()
 }
 
+func (t *Testcontrollers) InsertMulti() {
+	err := models.Test.InsertMulti()
+	//fmt.Println(id, err)
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"content": err}
+		goto finish
+	}
+finish:
+	t.ServeJSON()
+}
+
+func (t *Testcontrollers) Read() {
+	err := models.Test.Read()
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"content": err}
+		goto finish
+	}
+    finish:
+	  t.ServeJSON()
+}
+
+func(t *Testcontrollers) Updata() {
+	 err := models.Test.Updata()
+	if err!=nil {
+		t.Data["json"] = map[string]interface{}{"content":err}
+		goto finish
+	}
+	finish:
+	 t.ServeJSON()
+}
+
+func(t *Testcontrollers) Delete() {
+	err :=models.Test.Delete()
+	if err !=nil {
+		t.Data["json"] =map[string] interface{}{"content":err}
+		goto finish
+	}
+	finish:
+	  t.ServeJSON()
+}
+
 func (t *Testcontrollers) Params() {
 	jsoninfo := t.GetString("a")
     if jsoninfo == "" {
@@ -62,16 +93,6 @@ func (t *Testcontrollers) Params() {
 		t.Ctx.WriteString(jsoninfo)
         return
 	}
-}
-
-func (t *Testcontrollers) Read() {
-	err := models.Test.Read()
-	if err != nil {
-		t.Data["json"] = map[string]interface{}{"content": err}
-		goto finish
-	}
-finish:
-	t.ServeJSON()
 }
  // 获取int类型的数据
 func (t *Testcontrollers) Getid() {
@@ -153,4 +174,9 @@ func (t *Testcontrollers) BindData() {
 	var user struct{Name  string}
 	t.Ctx.Input.Bind(&user, "user")  //user =={Name:"astaxie"}
 	fmt.Println("aaaa \n",id,isok,ft,ol,ul,user)
+} 
+// session使用
+func(t *Testcontrollers) Session() {
+	t.SetSession("user","gfdsff")
+	fmt.Println(t.GetSession("user").(string))
 }

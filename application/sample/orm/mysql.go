@@ -29,5 +29,5 @@ func InitMysql() {
 	// 参数4(可选)  设置最大空闲连接
 	// 参数5(可选)  设置最大数据库连接 (go >= 1.2)
 	orm.RegisterDataBase("default", "mysql", fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8", user, pass, host, port, db), maxIdle, maxConn)
-	orm.RegisterDataBase("test", "mysql", fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8", user, pass, host, port, "test"), maxIdle, maxConn)
+	orm.RegisterDataBase("a", "mysql", fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8", user, pass, host, port, db), maxIdle, maxConn)
 }
